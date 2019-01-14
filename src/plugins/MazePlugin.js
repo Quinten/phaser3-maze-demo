@@ -66,6 +66,34 @@ class MazePlugin extends Phaser.Plugins.BasePlugin
     {
         this.maze[this.gridHeight - 1][this.gridWidth - 1].type = this.bottomRightMapping[this.maze[this.gridHeight - 1][this.gridWidth - 1].type];
     }
+
+    createMapData({ key = 'map', shardW = 16, shardH = 16, layer = 0 } = {})
+    {
+        let data = [];
+        for (let y = 0; y < (this.gridHeight * shardH); y++) {
+            let row = [];
+            data.push(row);
+            for (let x = 0; x < (this.gridWidth * shardW); x++) {
+                row.push(0);
+            }
+        }
+        for (let col of this.maze) {
+            for (let cel of col) {
+                if (cel.type !== undefined) {
+                    let origMap = this.game.cache.tilemap.entries.entries[key + cel.type].data.layers[layer].data;
+                    for (let y = 0; y < shardH; y++) {
+                        for (let x = 0; x < shardW; x++) {
+                            let i = (y * shardW) + x;
+                            let newX = (cel.x * shardW) + x;
+                            let newY = (cel.y * shardH) + y;
+                            data[newY][newX] = origMap[i] - 1;
+                        }
+                    }
+                }
+            }
+        }
+        return data;
+    }
 }
 
 export default MazePlugin;

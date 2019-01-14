@@ -7,11 +7,6 @@ class Level extends Phaser.Scene {
         super((config) ? config : { key: 'level' });
         this.gamepaused = undefined;
 
-        // not all levels but some
-        this.maps = undefined;
-        this.tiles = undefined;
-        this.layers = undefined;
-        this.centerMap = undefined;
         this.player = undefined;
         this.exits = undefined;
     }
@@ -22,10 +17,6 @@ class Level extends Phaser.Scene {
         // start controls
         this.controls.start();
 
-        this.maps = [];
-        this.tiles = [];
-        this.layers = [];
-        this.centerMap = undefined;
         this.exits = [];
         this.cameras.main.setBackgroundColor('#00FF00');
     }
@@ -40,65 +31,6 @@ class Level extends Phaser.Scene {
         //console.log(this);
         this.resizeField(this.sys.game.config.width, this.sys.game.config.height);
         this.cameras.main.flash(3000, fadeColor.r, fadeColor.g, fadeColor.b);
-    }
-
-    addMap({
-        key = 'map',
-        clipCamera = true,
-        clipLeft = 0,
-        clipRight = 0,
-        clipTop = 0,
-        clipBottom = 0,
-        centerMap = false,
-        collidePlayer = true,
-        x = 0,
-        y = 0,
-        tiles = 'tiles',
-        extruded = false
-    } = {}) {
-
-        let map = this.make.tilemap({ key: key });
-        let tile;
-        if (extruded) {
-            tile = map.addTilesetImage(tiles, tiles + '-extruded', 8, 8, 1, 2);
-        } else {
-            tile = map.addTilesetImage(tiles, tiles);
-        }
-        let layer = map.createStaticLayer(0, tile, x, y);
-        //console.log(map.widthInPixels);
-        //console.log(map.heightInPixels);
-        if (clipCamera) {
-            this.cameras.main.setBounds(clipLeft, clipTop, map.widthInPixels - clipLeft - clipRight, map.heightInPixels - clipTop - clipBottom);
-            this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        }
-        if (centerMap) {
-            this.centerMap = map;
-            this.physics.world.setBounds(0, 0, map.widthInPixels, map.heightInPixels);
-        }
-
-        // only up collisions
-        map.setCollisionBetween(65, 80);
-        map.forEachTile((tile) => {
-            if (tile.index < 65 || tile.index > 80) {
-                return;
-            }
-            tile.collideUp = true;
-            tile.collideDown = false;
-            tile.collideLeft = false;
-            tile.collideRight = false;
-        }, this, 0, 0, map.width, map.height);
-
-        // all round collisions
-        map.setCollisionBetween(193, 256);
-
-        // is it a platform map?
-        if (collidePlayer) {
-            this.physics.add.collider(this.player, layer);
-        }
-
-        this.maps.push(map);
-        this.tiles.push(tile);
-        this.layers.push(layer);
     }
 
     addPlayer({
