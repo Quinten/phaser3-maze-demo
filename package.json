@@ -25,12 +25,12 @@
   "homepage": "https://github.com/Quinten/phaser3-maze-demo#readme",
   "dependencies": {
     "generate-maze": "^0.2.0",
-    "phaser": "3.11.0"
+    "phaser": "^3.15.1"
   },
   "devDependencies": {
-    "raw-loader": "^0.5.1",
-    "webpack": "^4.20.1",
-    "webpack-cli": "^3.1.1",
-    "webpack-dev-server": "^3.1.9"
+    "raw-loader": "^1.0.0",
+    "webpack": "^4.28.4",
+    "webpack-cli": "^3.2.1",
+    "webpack-dev-server": "^3.1.14"
   }
 }

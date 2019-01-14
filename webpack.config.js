@@ -31,7 +31,7 @@ module.exports = {
 
     devServer: {
         contentBase: "./pub",
-        port: 8042
+        port: 8043
     }
 
 };
