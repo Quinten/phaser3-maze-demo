@@ -18,7 +18,7 @@ class StartPosition extends Phaser.Plugins.BasePlugin
 
     start()
     {
-        let lastExit = localStorage.getItem('exit');
+        let lastExit = localStorage.getItem('mazeexit');
         if (lastExit) {
             console.log('Starting in ' + lastExit);
             this.setExit(JSON.parse(lastExit));
@@ -36,7 +36,7 @@ class StartPosition extends Phaser.Plugins.BasePlugin
         this.y = y;
         this.facing = facing;
         this.startScene = scene;
-        localStorage.setItem('exit', JSON.stringify({x, y, facing, scene}));
+        localStorage.setItem('mazeexit', JSON.stringify({x, y, facing, scene}));
     }
 }
 
