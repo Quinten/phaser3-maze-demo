@@ -50,13 +50,5 @@ var config = {
     ]
 };
 
-// improve iframe focus, i think it actually isn't needed in this version of phaser
-window.addEventListener('load', function () {
-    window.focus();
-    document.body.addEventListener('click',function(e) {
-        window.focus();
-    },false);
-});
-
 // start game
 window.game = new Phaser.Game(config);
