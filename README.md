@@ -6,6 +6,10 @@ procedural generated maze in Phaser 3
 
 Play a demo here: https://quinten.github.io/phaser3-maze-demo/
 
+### Blogpost
+
+Read more details in the blogpost here: https://supernapie.com/blog/procedural-generated-maze-in-phaser-3
+
 ## Running the code
 
 ### 1. Install dependencies
