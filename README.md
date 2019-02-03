@@ -2,6 +2,10 @@
 
 procedural generated maze in Phaser 3
 
+Based on the [generate-maze](https://www.npmjs.com/package/generate-maze) npm package, which in turn is based on Eller's algorithm.
+
+See also https://github.com/Quinten/phaser3-dungeon-demo for a different algorithm and npm package.
+
 ### Demo
 
 Play a demo here: https://quinten.github.io/phaser3-maze-demo/
